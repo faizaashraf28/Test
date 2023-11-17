@@ -1,0 +1,27 @@
+
+
+
+nav {
+    background-color: #040e44;
+}
+
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: end;
+    padding: 0;
+}
+
+
+nav ul li {
+    display: inline;
+}
+
+
+nav ul li a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 1em;
+}

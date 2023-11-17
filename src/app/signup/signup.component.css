@@ -1,0 +1,43 @@
+.form-container {
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    height: 100vh; /* Utilize full viewport height */
+    background-image: url('https://img.freepik.com/free-photo/top-view-table-full-delicious-food-composition_23-2149141353.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699488000&semt=ais'); /* Replace with your image path */
+    background-size: cover; /* Adjust the image size to cover the entire body */
+  }
+  
+  /* Styles for the form */
+  form {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 50px;
+    border: 1px solid #0e0d0b;
+    border-radius: 40px;
+    background: #f9f9f9;
+    justify-content:center;
+    text-align: center;
+  }
+  
+  input, button {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  button {
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background: #ff8400;
+    color: white;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background: #0056b3;
+  }
+  

@@ -1,0 +1,10 @@
+<div class="form-container">
+  <form class="login-form" *ngIf="!isLoggedIn" (ngSubmit)="login()">
+    <input type="text" placeholder="Username" name="username" [(ngModel)]="username" class="form-input">
+    <input type="password" placeholder="Password" name="password" [(ngModel)]="password" class="form-input">
+    <button type="submit" class="login-btn">Login</button>
+    <!-- Display error message if there is one -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  </form>

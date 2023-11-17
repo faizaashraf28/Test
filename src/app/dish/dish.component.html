@@ -1,0 +1,15 @@
+<!-- dish.component.html -->
+
+<body>
+  <div class="title">
+    <h1>Delicious Food</h1>
+  </div>
+  <div class="dishes">
+    <button class="add-recipe-btn" (click)="goToAddRecipe()">Add Recipe</button>
+    <div *ngFor="let dish of filteredDishes" class="dish-card" (click)="navigateToRecipe(dish.id)">
+      <a [routerLink]="['/recipe', dish?.id]"></a>
+      <img [src]="dish.imageLink" alt="{{ dish.name }}">
+      <h2>{{ dish?.name }}</h2>
+    </div>
+  </div>
+</body>

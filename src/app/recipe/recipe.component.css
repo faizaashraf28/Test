@@ -1,0 +1,22 @@
+/* recipe.component.css */
+
+.recipe-container {
+    display: flex;
+    background-image: linear-gradient(lightblue,#040e44);
+    height: 900px;
+  }
+  
+  .recipe-info {
+    margin-right: 20px; /* Adjust the margin as needed */
+  }
+  
+  .recipe-image {
+    width: 800px;
+    height: auto;
+  }
+  
+  .ingredients {
+    flex: 1;
+    max-width: 400px; /* Adjust the max-width as needed */
+  }
+  

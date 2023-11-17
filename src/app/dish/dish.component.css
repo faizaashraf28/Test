@@ -1,0 +1,55 @@
+
+body {
+    background-color: rgb(144, 200, 217);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 800vh;
+    margin: 0;
+}
+
+.title {
+    margin-top: 50px;
+    color: white;
+}
+
+.dishes {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+}
+
+.dish-card {
+    margin: 10px;
+    text-align: center;
+    color: white;
+}
+
+img {
+    padding-top: 80px;
+    width: 400px;
+    height: auto;
+}
+/* Add the following styles to your CSS file or style section */
+
+.add-recipe-btn {
+    position: fixed; 
+    top: 100px; 
+    right: 20px;
+    background-color: #4CAF50; 
+    color: white; 
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px; 
+    cursor: pointer; 
+    border-radius: 8px; 
+    transition: background-color 0.3s; 
+  }
+  
+  .add-recipe-btn:hover {
+    background-color: #021002; 
+  }
+  

@@ -1,0 +1,53 @@
+.form-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    height: 100vh; 
+    background-image: url('https://img.freepik.com/free-photo/top-view-table-full-delicious-food-composition_23-2149141353.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699488000&semt=ais'); /* Replace with your image path */
+    background-size: cover; 
+  }
+  
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 50px;
+    border: 1px solid #0e0d0b;
+    border-radius: 40px;
+    background: #f9f9f9;
+    justify-content:center;
+    text-align: center;
+  }
+  
+  input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  button {
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background: #ff8400;
+    color: white;
+    cursor: pointer;
+    
+  }
+  
+  button:hover {
+    background: #0056b3;
+  }
+  
+  .error-message {
+  background-color: #dcffcc; 
+  color: #990000; 
+  padding: 10px; 
+  border: 1px solid #990000; 
+  border-radius: 5px; 
+  margin-top: 10px; 
+ 
+  }
+  

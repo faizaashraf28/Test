@@ -1,0 +1,5 @@
+p{
+    height: 100vh; /* Utilize full viewport height */
+    background-image: url('https://img.freepik.com/free-photo/top-view-table-full-delicious-food-composition_23-2149141353.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699488000&semt=ais'); /* Replace with your image path */
+    background-size: cover; /* Adjust the image size to cover the entire body */
+}
