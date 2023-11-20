@@ -1,5 +1,6 @@
 body {
     background: rgb(144, 200, 217);
+    height: 1200px;
 }
 .form-container {
     max-width: 600px;

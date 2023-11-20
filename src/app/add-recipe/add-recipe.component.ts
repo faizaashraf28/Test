@@ -1,17 +1,17 @@
 // add-recipe.component.ts
 
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { DishService } from '../services/dish.service';
 import { Dish, Ingredient } from '../models/dish.model';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-recipe.component.html',
   styleUrls: ['./add-recipe.component.css']
 })
 export class AddRecipeComponent {
+    @Output() recipeAdded: EventEmitter<Dish> = new EventEmitter<Dish>(); // Use @Output to emit data to parent component
   recipeForm: FormGroup;
 
   constructor(
@@ -37,9 +37,11 @@ export class AddRecipeComponent {
   get ingredients(): FormArray {
     return this.recipeForm.get('ingredients') as FormArray;
   }
+
   getIngredientControl(index: number, controlName: string): FormControl {
     return this.ingredients.at(index).get(controlName) as FormControl;
   }
+
   addIngredient(): void {
     this.ingredients.push(this.createIngredient());
   }
@@ -55,6 +57,9 @@ export class AddRecipeComponent {
 
       try {
         await this.dishService.addDish(newDish);
+        // Emit the new recipe data to the parent component
+        this.recipeAdded.emit(newDish);
+
         this.router.navigate(['/dish']);
       } catch (error) {
         console.error('Error adding dish:', error);

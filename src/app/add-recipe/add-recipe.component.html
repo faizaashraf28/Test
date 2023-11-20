@@ -1,28 +1,24 @@
-<!-- add-recipe.component.html -->
-
+<body>
 <div class="form-container">
     <form [formGroup]="recipeForm" (ngSubmit)="saveRecipe()">
-      <label for="dishName">Dish Name:</label>
-      <input type="text" id="dishName" formControlName="dishName" required>
-  
-      <label for="imageLink">Image Link:</label>
-      <input type="text" id="imageLink" formControlName="imageLink" required>
-  
-      <label for="recipe">Recipe:</label>
-      <textarea id="recipe" formControlName="recipe"></textarea>
-  
-      <label for="ingredients">Ingredients:</label>
-      <div formArrayName="ingredients">
+        <label for="dishName">Dish Name:</label>
+        <input type="text" id="dishName" formControlName="dishName" required>
+        <label for="imageLink">Image Link:</label>
+        <input type="text" id="imageLink" formControlName="imageLink" required>
+        <label for="recipe">Recipe:</label>
+        <textarea id="recipe" formControlName="recipe"></textarea>
+        <label for="ingredients">Ingredients:</label>
+        <div formArrayName="ingredients">
         <div *ngFor="let ingredient of ingredients.controls; let i = index">
-          <input [id]="'ingredientName' + i" [formControl]="getIngredientControl(i, 'name')" placeholder="Ingredient name">
-          <input [id]="'ingredientQuantity' + i" [formControl]="getIngredientControl(i, 'quantity')" placeholder="Quantity">
+            <input [id]="'ingredientName' + i" [formControl]="getIngredientControl(i, 'name')" placeholder="Ingredient name">
+            <input [id]="'ingredientQuantity' + i" [formControl]="getIngredientControl(i, 'quantity')" placeholder="Quantity">
         </div>
-      </div>
-  
-      <button type="button" (click)="addIngredient()">Add Ingredient</button>
-  
-      <button type="submit">Save Recipe</button>
+    </div>
+
+    <button type="button" (click)="addIngredient()">Add Ingredient</button>
+
+    <button type="submit">Save Recipe</button>
     </form>
     <router-outlet></router-outlet>
-  </div>
-  
+</div>
+</body>

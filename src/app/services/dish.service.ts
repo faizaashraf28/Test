@@ -4,7 +4,7 @@ import { Observable, from, of } from 'rxjs';
 import { Dish } from '../models/dish.model';
 import { map, switchMap, catchError } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-
+import { tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,17 +20,24 @@ export class DishService {
         console.log('Current User ID:', userId);
   
         if (userId) {
-          return this.firestore.collection<Dish>('dishes', ref => ref.where('userId', '==', userId)).valueChanges();
+          return this.firestore.collection<Dish>('dishes', ref => ref.where('userId', '==', userId)).valueChanges({idField:'id'});
         } else {
-          return this.firestore.collection<Dish>('dishes').valueChanges();
+          return this.firestore.collection<Dish>('dishes').valueChanges({idField:'id'});
         }
       })
     );
   }
 
   getDish(id: string): Observable<Dish | undefined> {
-    return this.firestore.collection<Dish>('dishes').doc(id).valueChanges();
+    return this.firestore.collection<Dish>('dishes').doc(id).valueChanges().pipe(
+      tap(dish => console.log('Fetched Dish:', dish)),
+      catchError(error => {
+        console.error('Error fetching dish details:', error);
+        return of(undefined);
+      })
+    );
   }
+  
 
   async addDish(newDish: Dish): Promise<Observable<void>> {
     const userId = await this.authService.getCurrentUserId();

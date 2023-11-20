@@ -13,8 +13,9 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent },
   {path: 'signup', component: SignupComponent },
   {path: 'dish', component: DishComponent },
-  {path:'recipe/:id',component:RecipeComponent},
-  {path:'add-recipe',component:AddRecipeComponent}
+  {path:'recipe',component:RecipeComponent},
+  {path:'add-recipe',component:AddRecipeComponent},
+  {path:':id/edit',component:AddRecipeComponent}
 
 ];
 

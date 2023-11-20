@@ -1,6 +1,5 @@
 // dish.component.ts
-
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Dish } from '../models/dish.model';
 import { DishService } from '../services/dish.service';
 import { Router } from '@angular/router';
@@ -12,11 +11,13 @@ import { Observable } from 'rxjs';
   styleUrls: ['./dish.component.css']
 })
 export class DishComponent implements OnInit {
-  dishes$: Observable<Dish[]>; // Use Observable<Dish[]> here
+  updatedDishData: Partial<Dish> | undefined;
+  @Input() dishData: Dish | undefined; 
+  dishes$: Observable<Dish[]>;
   filteredDishes: Dish[] = [];
 
   constructor(private dishService: DishService, private router: Router) {
-    this.dishes$ = this.dishService.getDishes(); // Assign observable to dishes$
+    this.dishes$ = this.dishService.getDishes();
   }
 
   ngOnInit(): void {
@@ -31,10 +32,18 @@ export class DishComponent implements OnInit {
   }
 
   navigateToRecipe(dishId: string | undefined): void {
-    if (dishId !== undefined) {
-      this.router.navigate(['/recipe', dishId]);
-    } else {
-      console.error('Invalid dishId:', dishId);
+    if (dishId) {
+      this.dishService.getDish(dishId).subscribe(
+        dish => {
+          console.log('Fetched Dish Details:', dish);
+          this.updatedDishData = dish;
+        },
+        error => console.error('Error fetching dish details:', error)
+      );
     }
+  }
+  
+  onRecipeAdded(newDish: Partial<Dish>): void {
+    this.updatedDishData = newDish;
   }
 }

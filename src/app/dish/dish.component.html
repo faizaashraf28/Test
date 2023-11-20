@@ -1,15 +1,39 @@
-<!-- dish.component.html -->
-
 <body>
   <div class="title">
     <h1>Delicious Food</h1>
   </div>
   <div class="dishes">
     <button class="add-recipe-btn" (click)="goToAddRecipe()">Add Recipe</button>
-    <div *ngFor="let dish of filteredDishes" class="dish-card" (click)="navigateToRecipe(dish.id)">
-      <a [routerLink]="['/recipe', dish?.id]"></a>
+    <div *ngFor="let dish of dishes$ | async" class="dish-card" (click)="navigateToRecipe(dish.id)">
       <img [src]="dish.imageLink" alt="{{ dish.name }}">
-      <h2>{{ dish?.name }}</h2>
+      <h1>{{ dish?.name }}</h1>
+      <h3>INGREDIENTS</h3>
+  <ul>
+    <li *ngFor="let ingredient of dish?.ingredients">
+      <h3>{{ ingredient.name }} - {{ ingredient.quantity }}</h3>
+    </li>
+  </ul>
+      <h3>RECIPE</h3>
+      <h3>{{dish?.recipe}}</h3>
+
+      </div>
+      </div>
+    </body>
+      <!-- <div *ngIf="dishData && dish.id === dishData.id">
+        <p>Ingredients:</p>
+        <ul>
+          <li *ngFor="let ingredient of dishData.ingredients">
+            {{ ingredient.name }} - {{ ingredient.quantity }}
+          </li>
+        </ul>
+        <p>Description: {{ dishData.recipe }}</p>
+      </div>
     </div>
-  </div>
-</body>
+    <div *ngIf="updatedDishData">
+      <p>Ingredients:</p>
+      <ul>
+        <li *ngFor="let ingredient of updatedDishData.ingredients">{{ ingredient.name }} - {{ ingredient.quantity }}</li>
+      </ul>
+      <p>Description: {{ updatedDishData.recipe }}</p>
+    </div> -->
+  
