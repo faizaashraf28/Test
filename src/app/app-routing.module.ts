@@ -8,6 +8,7 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { AddRecipeComponent } from './add-recipe/add-recipe.component';
 
 
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
   {path: 'login', component: LoginComponent },
@@ -15,8 +16,10 @@ const routes: Routes = [
   {path: 'dish', component: DishComponent },
   {path:'recipe',component:RecipeComponent},
   {path:'add-recipe',component:AddRecipeComponent},
-  {path:':id/edit',component:AddRecipeComponent}
-
+  {path:':id/edit',component:AddRecipeComponent},
+  {path: 'recipes',
+  loadChildren: () => import('./recipes/recipes.module').then(m => m.RecipesModule),
+}
 ];
 
 @NgModule({

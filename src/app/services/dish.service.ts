@@ -1,3 +1,5 @@
+// dish.service.ts
+
 import { Injectable } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Observable, from, of } from 'rxjs';
@@ -5,6 +7,7 @@ import { Dish } from '../models/dish.model';
 import { map, switchMap, catchError } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { tap } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,9 +23,9 @@ export class DishService {
         console.log('Current User ID:', userId);
   
         if (userId) {
-          return this.firestore.collection<Dish>('dishes', ref => ref.where('userId', '==', userId)).valueChanges({idField:'id'});
+          return this.firestore.collection<Dish>('dishes', ref => ref.where('userId', '==', userId)).valueChanges({ idField: 'id' });
         } else {
-          return this.firestore.collection<Dish>('dishes').valueChanges({idField:'id'});
+          return this.firestore.collection<Dish>('dishes').valueChanges({ idField: 'id' });
         }
       })
     );
@@ -37,7 +40,24 @@ export class DishService {
       })
     );
   }
-  
+  updateDish(updatedDish: Dish): Observable<void> {
+    return from(this.firestore.collection('dishes').doc(updatedDish.id).update(updatedDish)).pipe(
+      map(() => undefined)
+    );
+  }
+  addOrUpdateDish(dish: Dish): Promise<void> {
+    if (dish.id) {
+      // Dish has an ID, update the existing dish
+      return this.firestore.collection('dishes').doc(dish.id).set(dish).then(() => undefined);
+    } else {
+      // Dish doesn't have an ID, add a new dish
+      return this.addDish(dish).then(() => undefined);
+    }
+  }
+
+  deleteDish(id: string): Promise<void> {
+    return from(this.firestore.collection('dishes').doc(id).delete()).toPromise();
+  }
 
   async addDish(newDish: Dish): Promise<Observable<void>> {
     const userId = await this.authService.getCurrentUserId();
@@ -48,8 +68,7 @@ export class DishService {
       );
     } else {
       console.error('User is not logged in');
-      return of(); 
+      return of();
     }
   }
 }
-  

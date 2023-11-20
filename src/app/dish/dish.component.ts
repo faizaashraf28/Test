@@ -1,4 +1,5 @@
 // dish.component.ts
+
 import { Component, Input, OnInit } from '@angular/core';
 import { Dish } from '../models/dish.model';
 import { DishService } from '../services/dish.service';
@@ -12,7 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class DishComponent implements OnInit {
   updatedDishData: Partial<Dish> | undefined;
-  @Input() dishData: Dish | undefined; 
+  @Input() dishData: Dish | undefined;
   dishes$: Observable<Dish[]>;
   filteredDishes: Dish[] = [];
 
@@ -42,8 +43,16 @@ export class DishComponent implements OnInit {
       );
     }
   }
-  
+
   onRecipeAdded(newDish: Partial<Dish>): void {
     this.updatedDishData = newDish;
+  }
+
+  // Add this method for editing a dish
+  editDish(dishId: string | undefined): void {
+    console.log('Edit Dish ID:', dishId);
+    if (dishId) {
+      this.router.navigate(['/edit-recipe', dishId]);
+    }
   }
 }
